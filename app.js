@@ -16,10 +16,11 @@ function createObjs() {
   }
 };
 
-function OrderInfo(product, quantity, name, street, city, state, zip, phone, credit){
+function OrderInfo(product, quantity, firstName, lastName, street, city, state, zip, phone, credit){
   this.product = product;
   this.quantity = quantity;
-  this.name = name;
+  this.firstName = firstName;
+  this.lastName = lastName;
   this.street = street;
   this.city = city;
   this.state = state;
@@ -31,5 +32,27 @@ function OrderInfo(product, quantity, name, street, city, state, zip, phone, cre
 form.addEventListener('submit', makeOrder);
 
 function makeOrder(event){
+  var newOrderInfo = new OrderInfo();
+  newOrderInfo.product = this.elements['Products'].value;
+  newOrderInfo.quantity = this.elements['quantity'].value;
+  newOrderInfo.firstName = this.elements['firstName'].value;
+  newOrderInfo.lastName = this.elements['lastName'].value;
+  newOrderInfo.phone = this.elements['phone'].value;
+  newOrderInfo.street = this.elements['street'].value;
+  newOrderInfo.city = this.elements['city'].value;
+  newOrderInfo.state = this.elements['state'].value;
+  newOrderInfo.zip = this.elements['zip'].value;
+  newOrderInfo.credit = this.elements['credit'].value;
 
+  localStorage.setItem('newOrderInfo', JSON.stringify(newOrderInfo));
 }
+
+function populateDropdown() {
+
+  for (var i = 0; i < imgNames.length; i++) {
+    var targetParent = document.getElementById('selections');
+    var newOption = document.createElement('option');
+    newOption.setAttribute = ('value', imgNames[i]);
+    targetParent.appendChild(newOption);
+  }
+};
