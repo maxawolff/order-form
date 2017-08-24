@@ -30,7 +30,7 @@ function OrderInfo(product, quantity, firstName, lastName, street, city, state, 
   this.credit = credit;
 }
 
-form.addEventListener('submit', makeOrder);
+var getForm = document.getElementsByTagName('button');
 
 function makeOrder(event){
   var newOrderInfo = new OrderInfo();
@@ -53,18 +53,22 @@ function populateDropdown() {
     var targetParent = document.getElementById('selections');
     var newOption = document.createElement('option');
     newOption.setAttribute = ('value', imgNames[i]);
+    newOption.innerHTML = imgNames[i];
     targetParent.appendChild(newOption);
   }
+};
 
-  function addOrderToPage(){
-    if(localStorage.newOrderInfo){
-      var currentOrder = JSON.parse(localStorage.newOrderInfo);
-      var li = document.createElement('li');
-      ul.appendChild(li);
-      var index = imgNames.indexOf(currentOrder.product);
-      var img = document.createElement('img');
-      li.appendChild(img);
-      img.setAttribute('src', pathOptions[index]);
-    }
+function addOrderToPage(){
+  if(localStorage.newOrderInfo){
+    var currentOrder = JSON.parse(localStorage.newOrderInfo);
+    var li = document.createElement('li');
+    ul.appendChild(li);
+    var index = imgNames.indexOf(currentOrder.product);
+    var img = document.createElement('img');
+    li.appendChild(img);
+    img.setAttribute('src', pathOptions[index]);
   }
 };
+populateDropdown();
+
+getForm.addEventListener('submit', makeOrder);

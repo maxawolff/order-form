@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-      <form id = "form">
-        <select id = "selections"name="Products">
-          <option value="boots">Boots</option>
-          <option value="boots">Blaa</option>
+      <form action="cart.html">
+        <select  id = "selections"name="Products">
         </select>
         <br><br>
         <label for="quantity">Quantities:</label>
@@ -24,9 +22,11 @@
         <label for="state">State:</label> <input type="text" name="state" value="" maxlength = "2">
         <label for="zip"></label>Zip-Code: <input type="text" name="zip" value="" maxlength="5" placeholder="98000">
       </fieldset>
-      <button type="button" name="button">Add to cart</button>
+      <button type="submit" name="button">Add to cart</button>
+      <!-- <input type="submit" value="submit">Submit</input> -->
       </form>
     <div class="add">
         </div>
   </body>
+    <script type="text/javascript" src="app.js"></script>
 </html>
