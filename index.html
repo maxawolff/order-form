@@ -6,38 +6,27 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="product">
-      <form>
-        <select name="cars">
+      <form id = "form">
+        <select id = "selections"name="Products">
           <option value="boots">Boots</option>
+          <option value="boots">Blaa</option>
         </select>
         <br><br>
-        <input type="submit">
-      </form>
-        </div>
-    <div class="quanity">
-      <form >
-        Quantities:
-        <input type="number" name="" value="" placeholder="i.e: 3">
-      </form>
-        </div>
-    <div class="info">
-      <form >
+        <label for="quantity">Quantities:</label>
+        <input type="number" name="quantity" value="" placeholder="i.e: 3">
         <fieldset>
-          <legend>Cutomer Info</legend>
-        First Name:<input type="text" name="FirstName" value="">
-        Last Name: <input type="text" name="LastName" value="">
-        Phone Number: <input type="number" name="" value="">
-        Street: <input type="text" name="Street" value="">
-        City: <input type="text" name="City" value="">
-        State: <input type="text" name="State" value="" maxlength = "2">
-        Zip-Code: <input type="text" name="" value="" maxlength="5" placeholder="98000">
-
-        </fieldset>
-      </form>
-        </div>
-    <div class="add">
+          <legend>Customer's Info</legend>
+        <label for="firstName">First Name:</label><input type="text" name="firstName" value="">
+        <label for="lastName">Last Name:</label> <input type="text" name="lastName" value="">
+        <label for="phone">Phone Number:</label> <input type="number" name="phone" value="">
+        <label for="street">Street:</label> <input type="text" name="street" value="">
+        <label for="city">City: </label><input type="text" name="city" value="">
+        <label for="state">State:</label> <input type="text" name="state" value="" maxlength = "2">
+        <label for="zip"></label>Zip-Code: <input type="text" name="zip" value="" maxlength="5" placeholder="98000">
+      </fieldset>
       <button type="button" name="button">Add to cart</button>
+      </form>
+    <div class="add">
         </div>
   </body>
 </html>
