@@ -1,5 +1,6 @@
 'use strict';
 var cartItems = 0;
+var ul = document.getElementById('orders');
 
 var imgNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
@@ -48,11 +49,22 @@ function makeOrder(event){
 }
 
 function populateDropdown() {
-
   for (var i = 0; i < imgNames.length; i++) {
     var targetParent = document.getElementById('selections');
     var newOption = document.createElement('option');
     newOption.setAttribute = ('value', imgNames[i]);
     targetParent.appendChild(newOption);
+  }
+
+  function addOrderToPage(){
+    if(localStorage.newOrderInfo){
+      var currentOrder = JSON.parse(localStorage.newOrderInfo);
+      var li = document.createElement('li');
+      ul.appendChild(li);
+      var index = imgNames.indexOf(currentOrder.product);
+      var img = document.createElement('img');
+      li.appendChild(img);
+      img.setAttribute('src', pathOptions[index]);
+    }
   }
 };
