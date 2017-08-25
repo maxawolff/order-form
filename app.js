@@ -28,43 +28,41 @@ function OrderInfo(product, quantity, firstName, lastName, street, city, state, 
   this.zip = zip;
   this.phone = phone;
   this.credit = credit;
-}
+};
 
-form.addEventListener('submit', makeOrder);
+var getForm = document.getElementById('submit');
 
 function makeOrder(event){
+  event.preventDefault();
   var newOrderInfo = new OrderInfo();
-  newOrderInfo.product = this.elements['Products'].value;
+  console.log(newOrderInfo);
+  console.log(parseInt(this.elements['quantity'].value));
+  // newOrderInfo.product = this.elements['Products'].value;
   newOrderInfo.quantity = this.elements['quantity'].value;
   newOrderInfo.firstName = this.elements['firstName'].value;
-  newOrderInfo.lastName = this.elements['lastName'].value;
-  newOrderInfo.phone = this.elements['phone'].value;
-  newOrderInfo.street = this.elements['street'].value;
-  newOrderInfo.city = this.elements['city'].value;
-  newOrderInfo.state = this.elements['state'].value;
-  newOrderInfo.zip = this.elements['zip'].value;
-  newOrderInfo.credit = this.elements['credit'].value;
-
+  // newOrderInfo.lastName = this.elements['lastName'].value;
+  // newOrderInfo.phone = this.elements['phone'].value;
+  // newOrderInfo.street = this.elements['street'].value;
+  // newOrderInfo.city = this.elements['city'].value;
+  // newOrderInfo.state = this.elements['state'].value;
+  // newOrderInfo.zip = this.elements['zip'].value;
+  // newOrderInfo.credit = this.elements['credit'].value;
+  console.log(JSON.stringify(newOrderInfo));
+  debugger;
   localStorage.setItem('newOrderInfo', JSON.stringify(newOrderInfo));
 }
 
 function populateDropdown() {
   for (var i = 0; i < imgNames.length; i++) {
-    var targetParent = document.getElementById('selections');
+    var targetParent = document.getElementsByTagName('select')[0];
+
     var newOption = document.createElement('option');
     newOption.setAttribute = ('value', imgNames[i]);
+    newOption.innerHTML = imgNames[i];
     targetParent.appendChild(newOption);
   }
-
-  function addOrderToPage(){
-    if(localStorage.newOrderInfo){
-      var currentOrder = JSON.parse(localStorage.newOrderInfo);
-      var li = document.createElement('li');
-      ul.appendChild(li);
-      var index = imgNames.indexOf(currentOrder.product);
-      var img = document.createElement('img');
-      li.appendChild(img);
-      img.setAttribute('src', pathOptions[index]);
-    }
-  }
 };
+
+populateDropdown();
+
+getForm.addEventListener('click', makeOrder);
