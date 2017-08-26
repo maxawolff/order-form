@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-      <form action="index.html" method="GET">
+      <!-- <form action="index.html" method="GET">
         <select  id = "selections"name="Products">
         </select>
         <label for="quantity">Quantities:</label>
@@ -29,9 +29,20 @@
         <input type="text" name="zip" value="" maxlength="5" placeholder="98000"/>
       </fieldset>
       <input type="submit" value="submit" id="submit">Submit</input>
-      </form>
+      </form> -->
+    <form id = 'theForm'>
+      <table>
+        <tr>
+          <td><label for = 'quantity'>Quantity</label></td>
+          <td><input type ="number" name = 'quantity'/></td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="Confirm Order" id="submit"></td>
+        </tr>
+      </table>
+    </form>
     <div class="add">
-        </div>
+    </div>
   </body>
     <script type="text/javascript" src="app.js"></script>
 </html>
