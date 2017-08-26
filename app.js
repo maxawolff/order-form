@@ -1,5 +1,6 @@
 'use strict';
 var cartItems = 0;
+var itemsInCart = [];
 var ul = document.getElementById('orders');
 
 var imgNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
@@ -52,23 +53,38 @@ var getForm = document.getElementById('theForm');
 //   localStorage.setItem('newOrderInfo', JSON.stringify(newOrderInfo));
 // }
 
-// function populateDropdown() {
-//   for (var i = 0; i < imgNames.length; i++) {
-//     var targetParent = document.getElementsByTagName('select')[0];
-//
-//     var newOption = document.createElement('option');
-//     newOption.setAttribute = ('value', imgNames[i]);
-//     newOption.innerHTML = imgNames[i];
-//     targetParent.appendChild(newOption);
-//   }
-// };
-//
-// populateDropdown();
+function populateDropdown() {
+  for (var i = 0; i < imgNames.length; i++) {
+    var targetParent = document.getElementsByTagName('select')[0];
+
+    var newOption = document.createElement('option');
+    newOption.setAttribute = ('value', imgNames[i]);
+    newOption.innerHTML = imgNames[i];
+    targetParent.appendChild(newOption);
+  }
+};
+
+populateDropdown();
 
 function harvestAndPost(event){
+
   event.preventDefault();
-  var myNum = this.elements['quantity'].value;
-  console.log(myNum);
+  localStorage.clear();
+
+  var newOrderInfo = new OrderInfo();
+  newOrderInfo.product = this.elements['products'].value;
+  newOrderInfo.quantity = this.elements['quantity'].value;
+  newOrderInfo.firstName = this.elements['firstName'].value;
+  newOrderInfo.lastName = this.elements['lastName'].value;
+  newOrderInfo.phone = this.elements['phone'].value;
+  newOrderInfo.street = this.elements['street'].value;
+  newOrderInfo.city = this.elements['city'].value;
+  newOrderInfo.state = this.elements['state'].value;
+  newOrderInfo.zip = this.elements['zip'].value;
+  newOrderInfo.credit = this.elements['credit'].value;
+
+  localStorage.setItem('newOrder', JSON.stringify(newOrderInfo));
+  console.log(newOrderInfo);
 }
 
 getForm.addEventListener('submit', harvestAndPost);
