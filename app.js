@@ -82,9 +82,9 @@ function harvestAndPost(event){
   newOrderInfo.state = this.elements['state'].value;
   newOrderInfo.zip = this.elements['zip'].value;
   newOrderInfo.credit = this.elements['credit'].value;
-
-  localStorage.setItem('newOrder', JSON.stringify(newOrderInfo));
-  console.log(newOrderInfo);
+  itemsInCart.push(newOrderInfo);
+  localStorage.setItem('newOrder', JSON.stringify(itemsInCart));
+  console.log(itemsInCart);
 }
 
 getForm.addEventListener('submit', harvestAndPost);

@@ -36,12 +36,11 @@ function OrderInfo(product, quantity, firstName, lastName, street, city, state, 
 function addOrderToPage(){
   if(localStorage.getItem('newOrder')){
     var currentOrder = JSON.parse(localStorage.getItem('newOrder'));
-    itemsInCart.push(currentOrder);
-    console.log(currentOrder);
-    for(var i = 0; i < itemsInCart.length; i ++){
+    for(var i = 0; i < currentOrder.length; i ++){
       var li = document.createElement('li');
+      li.innerHTML = ('You have ordered ' + currentOrder[i].quantity + ' ' + currentOrder[i].product + 's');
       ul.appendChild(li);
-      var index = imgNames.indexOf(currentOrder.product);
+      var index = imgNames.indexOf(currentOrder[i].product);
       var img = document.createElement('img');
       li.appendChild(img);
       img.setAttribute('src', pathOptions[index]);
