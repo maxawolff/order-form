@@ -1,6 +1,6 @@
 'use strict';
 var cartItems = 0;
-var itemsInCart = [];
+
 var ul = document.getElementById('orders');
 
 var imgNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
@@ -69,8 +69,6 @@ populateDropdown();
 function harvestAndPost(event){
 
   event.preventDefault();
-  localStorage.clear();
-
   var newOrderInfo = new OrderInfo();
   newOrderInfo.product = this.elements['products'].value;
   newOrderInfo.quantity = this.elements['quantity'].value;
@@ -82,9 +80,17 @@ function harvestAndPost(event){
   newOrderInfo.state = this.elements['state'].value;
   newOrderInfo.zip = this.elements['zip'].value;
   newOrderInfo.credit = this.elements['credit'].value;
-  itemsInCart.push(newOrderInfo);
-  localStorage.setItem('newOrder', JSON.stringify(itemsInCart));
-  console.log(itemsInCart);
+
+  var newOrder = [];
+  if(localStorage.getItem('newOrder')){
+    var currentOrder = JSON.parse(localStorage.getItem('newOrder'));
+    for(var i = 0; i < currentOrder.length; i ++){
+      newOrder.push(currentOrder[i]);
+    }
+  }
+  newOrder.push(newOrderInfo);
+  localStorage.setItem('newOrder', JSON.stringify(newOrder));
+
 }
 
 getForm.addEventListener('submit', harvestAndPost);
