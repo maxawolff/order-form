@@ -20,32 +20,29 @@ function OrderInfo(product, quantity, firstName, lastName, street, city, state, 
   this.credit = credit;
 };
 
-// function addOrderToPage(){
-//   if(localStorage.newOrderInfo){
-//     console.log('if statement executed');
-//     var currentOrder = JSON.parse(localStorage.newOrderInfo);
-//     var li = document.createElement('li');
-//     ul.appendChild(li);
-//     var index = imgNames.indexOf(currentOrder.product);
-//     var img = document.createElement('img');
-//     li.appendChild(img);
-//     img.setAttribute('src', pathOptions[index]);
-//   }
-// };
-
 function addOrderToPage(){
   if(localStorage.getItem('newOrder')){
     var currentOrder = JSON.parse(localStorage.getItem('newOrder'));
     for(var i = 0; i < currentOrder.length; i ++){
       var li = document.createElement('li');
+      li.setAttribute('class', currentOrder[i].product);
       li.innerHTML = ('You have ordered ' + currentOrder[i].quantity + ' ' + currentOrder[i].product + 's');
       ul.appendChild(li);
       var index = imgNames.indexOf(currentOrder[i].product);
       var img = document.createElement('img');
       li.appendChild(img);
       img.setAttribute('src', pathOptions[index]);
+      var del = document.createElement('button');
+      del.innerHTML = 'delete item from cart';
+      del.addEventListener('click', deleteButton);
+      li.appendChild(del);
     }
   }
+}
+
+function deleteButton(event){
+  console.log(this.elements);
+  //trying to access click event and then delete the list item that is associtated with that event, stumped for now
 }
 
 addOrderToPage();
